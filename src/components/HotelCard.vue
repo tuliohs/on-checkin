@@ -33,12 +33,12 @@
       </div>
       <div class="hotel-actions">
         <Typography :text="$t('home.fromPrice')" size="text-caption" color="text-grey-7" />
+        <Typography :text="formattedPrice" size="text-h6" weight="text-weight-bold" />
         <Typography
-          :text="formattedPrice"
-          size="text-h6"
-          weight="text-weight-bold"
+          :text="`R$ ${pricePerNight}/${$t('home.night')}`"
+          size="text-caption"
+          color="text-grey-7"
         />
-        <Typography :text="`R$ ${pricePerNight}/${$t('home.night')}`" size="text-caption" color="text-grey-7" />
         <Typography :text="$t('home.taxesIncluded')" size="text-caption" color="text-grey-7" />
 
         <q-btn label="Selecionar" color="primary" class="select-button" @click="onSelect" />
@@ -51,6 +51,7 @@
 import { defineProps, defineEmits, computed, ref } from 'vue'
 import Typography from '@/components/UI/Typography.vue'
 import type { Hotel } from '@/models/Hotel'
+import { formatMoney } from '@/utils/strings'
 
 const { hotel } = defineProps<{
   hotel: Hotel
@@ -59,8 +60,8 @@ const { hotel } = defineProps<{
 const emit = defineEmits(['select'])
 const currentSlide = ref(0)
 
-const formattedPrice = computed(() => `R$ ${hotel.price.toFixed(2).replace('.', ',')}`)
-const pricePerNight = computed(() => (hotel.price / hotel.roomsQuantity).toFixed(2).replace('.', ','))
+const formattedPrice = computed(() => formatMoney(hotel.price))
+const pricePerNight = computed(() => formatMoney(hotel.price / hotel.roomsQuantity))
 
 const onSelect = () => {
   emit('select', hotel)
