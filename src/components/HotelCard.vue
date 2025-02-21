@@ -1,7 +1,7 @@
 <template>
   <q-card class="hotel-card">
     <div class="hotel-card-content">
-      <CarrousselImages :style="'width:33.33%'" :images="hotel.images" />
+      <CarrousselImages :style="'width:33%'" :images="hotel.images" />
 
       <div class="hotel-info">
         <Typography :text="hotel.name" size="text-h6" />

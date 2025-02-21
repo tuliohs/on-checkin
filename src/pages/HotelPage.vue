@@ -49,7 +49,6 @@ onMounted(async () => {
 watch(
   () => selectedCity.value,
   async () => {
-    console.log('selectedCity:', selectedCity.value)
     const hotelsResponse = await destinationsService.getHotels(1, 10, selectedCity.value)
     if (hotelsResponse.items && hotelsResponse.items.length > 0 && hotelsResponse.items[0]) {
       hotels.value = hotelsResponse.items[0].hotels
