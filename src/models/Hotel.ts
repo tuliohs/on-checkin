@@ -6,7 +6,7 @@ interface Amenity {
   interface Address {
     street: string;
     number: string;
-    district: string;
+    district: string | null;
     city: string;
     state: string;
     country: string;
@@ -21,14 +21,14 @@ interface Amenity {
     description: string;
     stars: string;
     thumb: string;
-    amenities: Amenity[];
+    amenities: Amenity[] | null;
     hasBreakFast: boolean;
     hasRefundableRoom: boolean;
     hasAgreement: boolean;
     nonRefundable: boolean | null;
     address: Address;
     images: string[];
-    deals?: string[];
+    deals: string[] | null;
     roomsQuantity: number;
     price: number;
   }
