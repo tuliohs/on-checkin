@@ -2,6 +2,7 @@
 // https://v2.quasar.dev/quasar-cli-vite/quasar-config-file
 
 import { defineConfig } from '#q-app/wrappers';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export default defineConfig((ctx) => {
@@ -90,7 +91,12 @@ export default defineConfig((ctx) => {
             useFlatConfig: true
           }
         }, { server: false }]
-      ]
+      ],
+
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        'wailsjs': path.resolve(__dirname, './wailsjs') // wails specific path
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-vite/quasar-config-file#devserver
