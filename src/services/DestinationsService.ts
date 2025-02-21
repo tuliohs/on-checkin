@@ -22,17 +22,21 @@ export default class DestinationsService implements IDestinationsService {
         throw new Error("Provider not found");
     }
 
-    public async getHotels(page: number, limit: number,): Promise<Pagination<HotelsResponse>> {
+    public async getHotels(page: number, limit: number, city?: number): Promise<Pagination<HotelsResponse>> {
         if (this.provider === 'api') {
             throw new Error("Method not implemented.");
 
         }
         if (this.provider === 'mock') {
+            let items = hotelsMock
+            if (city) {
+                items = items.filter(hotel => hotel.placeId === city)
+            }
             const results: Pagination<HotelsResponse> = {
-                items: hotelsMock,
+                items,
                 limit: limit,
                 page: page,
-                total: hotelsMock.length
+                total: items.length
 
             }
             return new Promise((resolve) => resolve(results))

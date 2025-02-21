@@ -70,7 +70,6 @@ const onSelect = () => {
 
 <style scoped>
 .hotel-card {
-  width: 100%;
   display: flex;
   background: white;
   padding: 16px;

@@ -33,6 +33,8 @@ defineProps({
   },
 })
 
+const emit = defineEmits(['onSearch'])
+
 const selectedItem = ref<{ value: number; label: string; alternative: string } | null>(null)
 
 const onSelectionChange = (item: { value: number; label: string; alternative: string } | null) => {
@@ -43,6 +45,7 @@ const onSearch = () => {
   if (!selectedItem.value) {
     return
   }
+  emit('onSearch', selectedItem.value)
 }
 </script>
 

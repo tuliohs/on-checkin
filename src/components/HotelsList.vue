@@ -1,6 +1,6 @@
 <template>
   <div class="hotels-list">
-    <HotelCard v-for="hotel in hotels" :key="hotel.id" :hotel="hotel" @select="onSelectHotel" />
+    <hotel-card v-for="hotel in hotels" :key="hotel.id" :hotel="hotel" @select="onSelectHotel" />
   </div>
 </template>
 
@@ -25,9 +25,12 @@ const onSelectHotel = (hotel: Hotel) => {
 
 <style scoped>
 .hotels-list {
+  
   width: 100%;
   display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5;
   flex-direction: column;
-  gap: 16px;
 }
 </style>
