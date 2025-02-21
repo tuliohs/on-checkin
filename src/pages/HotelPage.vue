@@ -37,7 +37,7 @@ onMounted(async () => {
   const placesResponse = await destinationsService.getPlaces()
   cities.value = placesResponse.map((place: Place) => ({
     value: place.placeId,
-    label: place.name,
+    label: `${place.name}, ${place.state.name}`,	
     alternative: place.state.name,
   }))
 

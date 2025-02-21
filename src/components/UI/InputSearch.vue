@@ -1,6 +1,9 @@
 <template>
   <q-card-section>
-    <Typography :text="label" size="text-caption" weight="text-weight-medium" />
+    <div class="flex">
+      <Typography :text="label" size="text-caption" weight="text-weight-medium" />
+      <span v-if="required" class="text-red">*</span>
+    </div>
     <q-select
       v-model="selectedItem"
       dense
@@ -33,6 +36,10 @@ const props = defineProps({
   label: {
     type: String,
     required: true,
+  },
+  required: {
+    type: Boolean,
+    default: false,
   },
 })
 

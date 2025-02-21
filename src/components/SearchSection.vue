@@ -8,13 +8,14 @@
       <q-separator />
 
       <InputSearch
+        :required="true"
         :items="items"
         :label="$t('search.destination')"
         @update:modelValue="onSelectionChange"
       />
 
       <q-card-actions align="right">
-        <Button :label="$t('search.buttonChange')" @click="onSearch" />
+        <Button :label="selectedItem?.value ? $t('search.buttonChange') : $t('search.button')" @click="onSearch" />
       </q-card-actions>
     </q-card>
   </div>
