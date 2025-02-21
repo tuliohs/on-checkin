@@ -1,11 +1,11 @@
 <template>
   <div class="hotels-list">
-    <hotel-card v-for="hotel in hotels" :key="hotel.id" :hotel="hotel" @select="onSelectHotel" />
+    <hotel-card v-for="hotel in hotels" :key="hotel.id" :hotel="hotel" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
+import { defineProps } from 'vue'
 import HotelCard from './HotelCard.vue'
 import type { Hotel } from '@/models/Hotel'
 
@@ -16,11 +16,6 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['selectHotel'])
-
-const onSelectHotel = (hotel: Hotel) => {
-  emit('selectHotel', hotel)
-}
 </script>
 
 <style scoped>

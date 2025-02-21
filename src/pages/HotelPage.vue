@@ -1,13 +1,14 @@
 <template>
   <q-page class="flex items-start">
-    <search-section :items="cities" @onSearch="onCitySelected" />
+    <search-section v-if="cities" :items="cities" @onSearch="onCitySelected" />
     <!--<div class="search-footer">
       <Breadcrumb :items="breadcrumbItems" />
       <SortDropdown :options="sortOptions" @update:modelValue="onSortChange" />
     </div>-->
 
-    <hotels-list v-if="hotels && hotels.length > 0" :hotels="hotels" @selectHotel="onHotelSelect" />
+    <hotels-list v-if="hotels && hotels.length > 0" :hotels="hotels"  />
     <empty-state v-else-if="selectedCity" message="Nenhum hotel encontrado" />
+    <HotelDrawer />
   </q-page>
 </template>
 
@@ -17,6 +18,7 @@ import EmptyState from '@/components/EmptyState.vue'
 import { onMounted, ref, watch } from 'vue'
 import { destinationsService } from '@/services'
 import HotelsList from '@/components/HotelsList.vue'
+import HotelDrawer from '@/components/HotelDrawer.vue'
 import type { Place } from '@/models/Place'
 import type { Hotel } from '@/models/Hotel'
 
@@ -26,18 +28,13 @@ const selectedCity = ref()
 
 const onCitySelected = (city: { value: number | null; label: string }) => {
   selectedCity.value = city.value
-  console.log('Cidade selecionada:', city)
-}
-
-const onHotelSelect = (hotel: Hotel) => {
-  console.log('Hotel selecionado:', hotel)
 }
 
 onMounted(async () => {
   const placesResponse = await destinationsService.getPlaces()
   cities.value = placesResponse.map((place: Place) => ({
     value: place.placeId,
-    label: `${place.name}, ${place.state.name}`,	
+    label: `${place.name}, ${place.state.name}`,
     alternative: place.state.name,
   }))
 

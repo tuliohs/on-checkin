@@ -1,24 +1,7 @@
 <template>
   <q-card class="hotel-card">
     <div class="hotel-card-content">
-      <q-carousel
-        v-model="currentSlide"
-        animated
-        infinite
-        swipeable
-        autoplay
-        control-color="white"
-        class="carousel"
-        arrows
-      >
-        <q-carousel-slide
-          v-for="(image, index) in hotel.images"
-          :key="index"
-          :name="index"
-          :img-src="image"
-          class="carousel-slide"
-        />
-      </q-carousel>
+      <CarrousselImages :style="'width:33.33%'" :images="hotel.images" />
 
       <div class="hotel-info">
         <Typography :text="hotel.name" size="text-h6" />
@@ -48,23 +31,23 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, computed, ref } from 'vue'
+import { defineProps, computed } from 'vue'
 import Typography from '@/components/UI/Typography.vue'
 import type { Hotel } from '@/models/Hotel'
 import { formatMoney } from '@/utils/strings'
+import { useHotelStore } from '@/stores/hotelStore'
+import CarrousselImages from '@/components/CarouselImages.vue'
 
 const { hotel } = defineProps<{
   hotel: Hotel
 }>()
 
-const emit = defineEmits(['select'])
-const currentSlide = ref(0)
-
 const formattedPrice = computed(() => formatMoney(hotel.price))
 const pricePerNight = computed(() => formatMoney(hotel.price / hotel.roomsQuantity))
 
+const hotelStore = useHotelStore()
 const onSelect = () => {
-  emit('select', hotel)
+  hotelStore.selectHotel(hotel)
 }
 </script>
 
@@ -84,18 +67,6 @@ const onSelect = () => {
   width: 100%;
 }
 
-.carousel {
-  width: 33.33%; /* 1/3 da largura do card */
-  height: 180px;
-  border-radius: 8px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.carousel-slide {
-  background-size: cover;
-  background-position: center;
-}
 
 .hotel-info {
   flex-grow: 1;
