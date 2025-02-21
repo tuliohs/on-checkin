@@ -1,8 +1,12 @@
-// This is just an example,
-// so you can safely delete all default props below
-
 export default {
-    failed: 'Ação falhou',
-    success: 'Ação foi bem sucedida'
-  };
-  
+  search: {
+    title: 'Pesquisar Destino',
+    destination: 'Destino',
+    required: 'O destino é obrigatório',
+    button: 'Buscar',
+    buttonChange: 'Alterar Busca',
+  },
+  home: {
+    reserve: 'Reservar Hotel',
+  }
+}
