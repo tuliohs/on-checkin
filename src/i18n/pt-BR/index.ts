@@ -8,5 +8,9 @@ export default {
   },
   home: {
     reserve: 'Reservar Hotel',
-  }
+    hasRefundableRoom: "Reembolsável",
+    fromPrice: "A partir de:",
+    taxesIncluded: "Impostos Inclusos",
+    night: "noite",
+  },
 }
