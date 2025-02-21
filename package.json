@@ -2,7 +2,7 @@
   "name": "on-checkin",
   "version": "0.0.1",
   "description": "A project based in quasar",
-  "productName": "OnCheckin",
+  "productName": "onCheckin",
   "author": "tulio",
   "type": "module",
   "private": true,
